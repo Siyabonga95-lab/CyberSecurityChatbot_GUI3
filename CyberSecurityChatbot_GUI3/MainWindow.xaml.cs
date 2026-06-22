@@ -105,10 +105,10 @@ namespace CyberSecurityChatbot_GUI3
                 "║     Stay Safe Online! 🛡️               ║\n" +
                 "╚════════════════════════════════════════╝\n\n" +
                 "NEW FEATURES:\n" +
-                "  📝 Task Assistant  — Add & manage cybersecurity tasks\n" +
-                "  🧠 Quiz            — Test your cybersecurity knowledge\n" +
-                "  📋 Activity Log   — See what the chatbot has done\n" +
-                "  🤖 Smarter NLP    — Understands natural language better\n\n" +
+                "   Task Assistant  — Add & manage cybersecurity tasks\n" +
+                "   Quiz            — Test your cybersecurity knowledge\n" +
+                "   Activity Log   — See what the chatbot has done\n" +
+                "   Smarter NLP    — Understands natural language better\n\n" +
                 "Use the SIDEBAR buttons on the left, or just type naturally!\n\n" +
                 "Before we start — what's your name?"
             );
@@ -308,14 +308,14 @@ namespace CyberSecurityChatbot_GUI3
                 txtQuestionCount.Text = "💬 Messages: 0";
 
                 await ShowBotResponseAnimated(
-                    $"Hello {_user.Name}! 👋 Welcome to the Part 3 Enhanced Cybersecurity Chatbot!\n\n" +
+                    $"Hello {_user.Name}!  Welcome to the Part 3 Enhanced Cybersecurity Chatbot!\n\n" +
                     "I have 4 powerful new features:\n\n" +
-                    "📝 TASK ASSISTANT — Click '➕ Add Task' or type 'add task Enable 2FA'\n" +
-                    "🧠 QUIZ           — Click '🎮 Start Quiz' or type 'start quiz'\n" +
-                    "📋 ACTIVITY LOG   — Click '📋 Activity Log' or type 'show activity log'\n" +
-                    "🤖 SMART NLP      — I understand natural phrases like 'remind me to update my password'\n\n" +
+                    " TASK ASSISTANT — Click ' Add Task' or type 'add task Enable 2FA'\n" +
+                    " QUIZ           — Click ' Start Quiz' or type 'start quiz'\n" +
+                    " ACTIVITY LOG   — Click ' Activity Log' or type 'show activity log'\n" +
+                    " SMART NLP      — I understand natural phrases like 'remind me to update my password'\n\n" +
                     "I still know everything from Parts 1 and 2!\n" +
-                    "Type 'menu' for the full list of everything I can do. 😊"
+                    "Type 'menu' for the full list of everything I can do. "
                 );
                 return;
             }
@@ -324,14 +324,14 @@ namespace CyberSecurityChatbot_GUI3
             if (input.ToLower() == "exit" || input.ToLower() == "quit" || input.ToLower() == "bye")
             {
                 await ShowBotResponseAnimated(
-                    $"Goodbye {_user.Name}! 👋 Stay safe online! 🛡️\n\n" +
+                    $"Goodbye {_user.Name}!  Stay safe online! 🛡️\n\n" +
                     $"Session Summary:\n" +
-                    $"⏱  Time: {_user.GetSessionTime()}\n" +
-                    $"💬 Messages: {_user.QuestionCount}\n" +
+                    $"  Time: {_user.GetSessionTime()}\n" +
+                    $" Messages: {_user.QuestionCount}\n" +
                     (!string.IsNullOrEmpty(_user.FavouriteTopic) ?
-                        $"🧠 Favourite topic: {_user.FavouriteTopic}\n" : "") +
-                    $"📋 Actions logged: {_chatbot.Logger.TotalCount}\n\n" +
-                    "Come back anytime! Knowledge is your best defence. 🔐"
+                        $" Favourite topic: {_user.FavouriteTopic}\n" : "") +
+                    $" Actions logged: {_chatbot.Logger.TotalCount}\n\n" +
+                    "Come back anytime! Knowledge is your best defence. "
                 );
                 txtInput.IsEnabled = false;
                 btnSend.IsEnabled = false;
