@@ -8,7 +8,7 @@ namespace CyberSecurityChatbot_GUI3
     // ============================================================
     // DATABASE MANAGER — Handles all SQLite operations
     //
-    // WHY SQLITE?
+    // WHY I Used SQLITE?
     //   No server needed — the database is a single .db file stored
     //   in the application folder. Perfect for a student project.
     //
