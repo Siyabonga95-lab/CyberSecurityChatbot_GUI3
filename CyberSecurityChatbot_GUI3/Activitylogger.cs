@@ -5,7 +5,7 @@ using System.Linq;
 namespace CyberSecurityChatbot_GUI3
 {
     // ============================================================
-    //
+    // ACTIVITY LOGGER CLASS
     // Keeps a List<string> of every significant chatbot action.
     // Each entry includes a timestamp.
     // Only the last 10 entries are shown (rubric requirement).
