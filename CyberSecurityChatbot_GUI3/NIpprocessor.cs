@@ -6,12 +6,12 @@ namespace CyberSecurityChatbot_GUI3
 {
     // ============================================================
     //
-    // Simulates Natural Language Processing using:
+    //  I Simulates Natural Language Processing using:
     //   1. Synonym dictionaries — maps many phrasings to one intent
     //   2. Regex patterns       — flexible word-order matching
     //   3. Intent classification — returns a clean Intent enum
     //
-    // This allows the chatbot to understand inputs like:
+    // This allows the  chatbot to understand inputs like:
     //   "Can you remind me to update my password?"
     //   "set a reminder for enabling 2FA"
     //   "I need to set up two factor auth"
