@@ -1,0 +1,385 @@
+﻿<Window x:Class="CyberSecurityChatbot_GUI3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SIYA'S CYBER CHATBOT — Stay Safe Online"
+        Height="780" Width="1100"
+        MinHeight="600" MinWidth="850"
+        WindowStartupLocation="CenterScreen"
+        Background="#0D1117">
+
+    <!-- ================================================================
+         PART 3 — ENHANCED MAIN WINDOW
+         Layout: Header | (Sidebar + Chat Area) | Topic Bar | Input | Status
+         Sidebar added for Part 3 features: Tasks, Quiz, Activity Log
+         ================================================================ -->
+
+    <Window.Resources>
+
+        <!-- ── SEND BUTTON ─────────────────────────────────────── -->
+        <Style x:Key="SendButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#00C8FF"/>
+            <Setter Property="Foreground" Value="#0D1117"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="20,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#39D353"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── CLEAR BUTTON ────────────────────────────────────── -->
+        <Style x:Key="ClearButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#21262D"/>
+            <Setter Property="Foreground" Value="#8B949E"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#30363D"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="14,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#30363D"/>
+                    <Setter Property="Foreground" Value="#E6EDF3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── TOPIC QUICK BUTTONS ──────────────────────────────── -->
+        <Style x:Key="TopicButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#21262D"/>
+            <Setter Property="Foreground" Value="#8B949E"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#30363D"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="Margin" Value="3,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0D1117"/>
+                    <Setter Property="Foreground" Value="#00C8FF"/>
+                    <Setter Property="BorderBrush" Value="#00C8FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── SIDEBAR FEATURE BUTTONS ──────────────────────────── -->
+        <Style x:Key="SidebarButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#161B22"/>
+            <Setter Property="Foreground" Value="#E6EDF3"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#30363D"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="8,10"/>
+            <Setter Property="Margin" Value="0,4,0,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#21262D"/>
+                    <Setter Property="Foreground" Value="#00C8FF"/>
+                    <Setter Property="BorderBrush" Value="#00C8FF"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#00C8FF"/>
+                    <Setter Property="Foreground" Value="#0D1117"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── INPUT BOX ────────────────────────────────────────── -->
+        <Style x:Key="InputBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="#21262D"/>
+            <Setter Property="Foreground" Value="#E6EDF3"/>
+            <Setter Property="CaretBrush" Value="#00C8FF"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#30363D"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#00C8FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── SCROLLVIEWER ─────────────────────────────────────── -->
+        <Style x:Key="ChatScrollStyle" TargetType="ScrollViewer">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Window.Resources>
+
+    <!-- ── OUTER GRID ─────────────────────────────────────────────── -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Row 0: Header -->
+            <RowDefinition Height="*"/>
+            <!-- Row 1: Sidebar + Chat -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 2: Topic quick buttons -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 3: Input bar -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 4: Status bar -->
+        </Grid.RowDefinitions>
+
+        <!-- ================================================================
+             ROW 0 — HEADER (unchanged from Part 2, satisfies Req 1)
+             ================================================================ -->
+        <Border Grid.Row="0"
+                Background="#161B22"
+                BorderBrush="#30363D"
+                BorderThickness="0,0,0,1"
+                Padding="20,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <TextBlock FontFamily="Consolas" FontSize="11" Foreground="#00C8FF"
+                               LineHeight="16" xml:space="preserve">╔════════════════════════════════════════╗
+║     SIYA'S CYBER CHATBOT  — PART 3    ║
+║     Stay Safe Online! 🛡️               ║
+╚════════════════════════════════════════╝</TextBlock>
+                    <TextBlock Text="Your personal cybersecurity assistant — Tasks • Quiz • Activity Log"
+                               FontFamily="Consolas" FontSize="11"
+                               Foreground="#8B949E" Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical"
+                            HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock x:Name="txtSessionTime"
+                               Text="⏱  Session: 0 min, 0 sec"
+                               FontFamily="Consolas" FontSize="11"
+                               Foreground="#8B949E" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="txtQuestionCount"
+                               Text="💬 Messages: 0"
+                               FontFamily="Consolas" FontSize="11"
+                               Foreground="#8B949E" Margin="0,3,0,0"
+                               HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="txtMemoryIndicator"
+                               Text=""
+                               FontFamily="Consolas" FontSize="11"
+                               Foreground="#39D353" Margin="0,3,0,0"
+                               HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ================================================================
+             ROW 1 — SIDEBAR + CHAT AREA (two columns)
+             Left  = Part 3 feature sidebar
+             Right = existing chat conversation panel
+             ================================================================ -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <!-- Sidebar -->
+                <ColumnDefinition Width="*"/>
+                <!-- Chat -->
+            </Grid.ColumnDefinitions>
+
+            <!-- ── SIDEBAR ─────────────────────────────────────────── -->
+            <Border Grid.Column="0"
+                    Background="#161B22"
+                    BorderBrush="#30363D"
+                    BorderThickness="0,0,1,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="10,12,10,12">
+
+                        <!-- TASK ASSISTANT section -->
+                        <TextBlock Text="📝 TASKS"
+                                   FontFamily="Consolas" FontSize="11" FontWeight="Bold"
+                                   Foreground="#00C8FF" Margin="0,0,0,4"/>
+
+                        <Button x:Name="btnAddTask"
+                                Content="➕ Add Task"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <Button x:Name="btnViewTasks"
+                                Content="📋 View Tasks"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <Button x:Name="btnCompleteSidebar"
+                                Content="✅ Complete Task"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <Button x:Name="btnDeleteSidebar"
+                                Content="🗑️ Delete Task"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <!-- Divider -->
+                        <Border Height="1" Background="#30363D" Margin="0,14,0,10"/>
+
+                        <!-- QUIZ section -->
+                        <TextBlock Text="🧠 QUIZ"
+                                   FontFamily="Consolas" FontSize="11" FontWeight="Bold"
+                                   Foreground="#00C8FF" Margin="0,0,0,4"/>
+
+                        <Button x:Name="btnStartQuiz"
+                                Content="🎮 Start Quiz"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <!-- Divider -->
+                        <Border Height="1" Background="#30363D" Margin="0,14,0,10"/>
+
+                        <!-- ACTIVITY LOG section -->
+                        <TextBlock Text="📋 LOG"
+                                   FontFamily="Consolas" FontSize="11" FontWeight="Bold"
+                                   Foreground="#00C8FF" Margin="0,0,0,4"/>
+
+                        <Button x:Name="btnShowLog"
+                                Content="📋 Activity Log"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <Button x:Name="btnShowFullLog"
+                                Content="📜 Full Log"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <!-- Divider -->
+                        <Border Height="1" Background="#30363D" Margin="0,14,0,10"/>
+
+                        <!-- HELP section -->
+                        <TextBlock Text="❓ HELP"
+                                   FontFamily="Consolas" FontSize="11" FontWeight="Bold"
+                                   Foreground="#00C8FF" Margin="0,0,0,4"/>
+
+                        <Button x:Name="btnMenuSidebar"
+                                Content="📖 Full Menu"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="SidebarButton_Click"/>
+
+                        <!-- Task counter badge -->
+                        <Border Height="1" Background="#30363D" Margin="0,14,0,10"/>
+                        <TextBlock x:Name="txtTaskBadge"
+                                   Text="Tasks: 0"
+                                   FontFamily="Consolas" FontSize="11"
+                                   Foreground="#39D353"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,4,0,0"/>
+                        <TextBlock x:Name="txtLogBadge"
+                                   Text="Log entries: 0"
+                                   FontFamily="Consolas" FontSize="11"
+                                   Foreground="#8B949E"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- ── CHAT AREA ───────────────────────────────────────── -->
+            <Border Grid.Column="1" Background="#0D1117" Padding="0">
+                <ScrollViewer x:Name="ChatScrollViewer"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Style="{StaticResource ChatScrollStyle}"
+                              Padding="16,12">
+                    <StackPanel x:Name="ChatPanel" Orientation="Vertical" Margin="0"/>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- ================================================================
+             ROW 2 — QUICK TOPIC BUTTONS (unchanged from Part 2)
+             ================================================================ -->
+        <Border Grid.Row="2"
+                Background="#161B22"
+                BorderBrush="#30363D"
+                BorderThickness="0,1,0,0"
+                Padding="16,8">
+            <WrapPanel Orientation="Horizontal">
+                <TextBlock Text="Quick topics: "
+                           FontFamily="Consolas" FontSize="11"
+                           Foreground="#8B949E" VerticalAlignment="Center"
+                           Margin="0,0,6,0"/>
+                <Button x:Name="btnPhishing"  Content="🎣 Phishing"  Style="{StaticResource TopicButtonStyle}" Click="TopicButton_Click"/>
+                <Button x:Name="btnPasswords" Content="🔑 Passwords" Style="{StaticResource TopicButtonStyle}" Click="TopicButton_Click"/>
+                <Button x:Name="btnPrivacy"   Content="🔒 Privacy"   Style="{StaticResource TopicButtonStyle}" Click="TopicButton_Click"/>
+                <Button x:Name="btnScams"     Content="⚠️ Scams"    Style="{StaticResource TopicButtonStyle}" Click="TopicButton_Click"/>
+                <Button x:Name="btnViruses"   Content="🦠 Viruses"   Style="{StaticResource TopicButtonStyle}" Click="TopicButton_Click"/>
+                <Button x:Name="btnLinks"     Content="🔗 Links"     Style="{StaticResource TopicButtonStyle}" Click="TopicButton_Click"/>
+                <Button x:Name="btnMenu"      Content="📋 Menu"      Style="{StaticResource TopicButtonStyle}" Click="TopicButton_Click"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- ================================================================
+             ROW 3 — INPUT BAR
+             ================================================================ -->
+        <Border Grid.Row="3"
+                Background="#161B22"
+                BorderBrush="#30363D"
+                BorderThickness="0,1,0,0"
+                Padding="16,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="txtInput"
+                         Grid.Column="0"
+                         Style="{StaticResource InputBoxStyle}"
+                         Height="42"
+                         ToolTip="Type a message, 'add task ...', 'start quiz', 'show activity log', or press Enter"
+                         KeyDown="txtInput_KeyDown"
+                         Margin="0,0,8,0"/>
+
+                <Button x:Name="btnSend"
+                        Grid.Column="1"
+                        Content="SEND ▶"
+                        Style="{StaticResource SendButtonStyle}"
+                        Height="42" Width="90"
+                        Click="btnSend_Click"
+                        Margin="0,0,8,0"/>
+
+                <Button x:Name="btnClear"
+                        Grid.Column="2"
+                        Content="CLEAR"
+                        Style="{StaticResource ClearButtonStyle}"
+                        Height="42" Width="70"
+                        Click="btnClear_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- ================================================================
+             ROW 4 — STATUS BAR
+             ================================================================ -->
+        <Border Grid.Row="4"
+                Background="#161B22"
+                BorderBrush="#30363D"
+                BorderThickness="0,1,0,0"
+                Padding="16,5">
+            <TextBlock x:Name="txtStatus"
+                       Text="💡 NEW: Use sidebar buttons, type 'add task [name]', 'start quiz', or 'show activity log'"
+                       FontFamily="Consolas" FontSize="10"
+                       Foreground="#8B949E"/>
+        </Border>
+    </Grid>
+</Window>
