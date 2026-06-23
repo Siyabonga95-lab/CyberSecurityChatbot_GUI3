@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace CyberSecurityChatbot_GUI3
 {
     // ============================================================
-    //
+
     //  I Simulates Natural Language Processing using:
     //   1. Synonym dictionaries — maps many phrasings to one intent
     //   2. Regex patterns       — flexible word-order matching
