@@ -23,20 +23,16 @@ jobs:
       uses: microsoft/setup-msbuild@v2
     
     - name: Restore NuGet packages
-      run: nuget restore CyberSecurityChatbotGit.sln
-      # If you don't have a .sln file, use:
-      # run: nuget restore CyberSecurityChatbotGit.csproj
+      run: nuget restore CyberSecurityChatbot_GUI3.sln
     
     - name: Build solution
-      run: msbuild CyberSecurityChatbotGit.sln /p:Configuration=Release /p:Platform="Any CPU"
-      # If you don't have a .sln file, use:
-      # run: msbuild CyberSecurityChatbotGit.csproj /p:Configuration=Release
+      run: msbuild CyberSecurityChatbot_GUI3.sln /p:Configuration=Release /p:Platform="Any CPU"
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: CyberSecurityChatbot-Build
-        path: ./CyberSecurityChatbotGit/bin/Release/
+        path: ./CyberSecurityChatbot_GUI3/bin/Release/
         if-no-files-found: warn
     
     - name: Upload artifact (alternative path)
