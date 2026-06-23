@@ -1,0 +1,48 @@
+name: .NET Framework CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+      with:
+        nuget-version: 'latest'
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+    
+    - name: Restore NuGet packages
+      run: nuget restore CyberSecurityChatbotGit.sln
+      # If you don't have a .sln file, use:
+      # run: nuget restore CyberSecurityChatbotGit.csproj
+    
+    - name: Build solution
+      run: msbuild CyberSecurityChatbotGit.sln /p:Configuration=Release /p:Platform="Any CPU"
+      # If you don't have a .sln file, use:
+      # run: msbuild CyberSecurityChatbotGit.csproj /p:Configuration=Release
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: CyberSecurityChatbot-Build
+        path: ./CyberSecurityChatbotGit/bin/Release/
+        if-no-files-found: warn
+    
+    - name: Upload artifact (alternative path)
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: Build-logs
+        path: ./**/*.log
+        if-no-files-found: ignore
