@@ -80,15 +80,15 @@ The chatbot understands natural variations:
 
 ## FEATURES FROM PARTS 1 & 2 (still present)
 
-- ✅ ASCII art header
-- ✅ Voice greeting (WAV file)
-- ✅ Keyword recognition (phishing, passwords, privacy, scams, viruses, browsing)
-- ✅ Random tips (Dictionary<string, string[]>)
-- ✅ "Tell me more" conversation flow
-- ✅ Memory / favourite topic
-- ✅ Sentiment detection (worried, curious, frustrated, happy, tired)
-- ✅ Spinner animation + typing effect
-- ✅ Quick topic buttons
+-  ASCII art header
+-  Voice greeting (WAV file)
+-  Keyword recognition (phishing, passwords, privacy, scams, viruses, browsing)
+-  Random tips (Dictionary<string, string[]>)
+-  "Tell me more" conversation flow
+-  Memory / favourite topic
+-  Sentiment detection (worried, curious, frustrated, happy, tired)
+-  Spinner animation + typing effect
+-  Quick topic buttons
 
 ---
 
