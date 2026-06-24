@@ -38,7 +38,7 @@
         <!-- ── CLEAR BUTTON ────────────────────────────────────── -->
         <Style x:Key="ClearButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#21262D"/>
-            <Setter Property="Foreground" Value="#8B949E"/>
+            <Setter Property="Foreground" Value="#FFC8BBAD"/>
             <Setter Property="FontFamily" Value="Consolas"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -76,7 +76,7 @@
         <!-- ── SIDEBAR FEATURE BUTTONS ──────────────────────────── -->
         <Style x:Key="SidebarButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#161B22"/>
-            <Setter Property="Foreground" Value="#E6EDF3"/>
+            <Setter Property="Foreground" Value="#FF90CAB1"/>
             <Setter Property="FontFamily" Value="Consolas"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Bold"/>
