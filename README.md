@@ -1,11 +1,8 @@
 # SIYA'S CYBER CHATBOT — Part 3 POE
-## PROG6221/W — Programming 2A
 
 ---
 
-## SETUP INSTRUCTIONS (Step by Step)
-
-### Step 1 — Install SQLite NuGet Package
+###  Install SQLite NuGet Package
 1. Open your project in Visual Studio
 2. Go to: **Tools → NuGet Package Manager → Manage NuGet Packages for Solution**
 3. Click the **Browse** tab
@@ -52,24 +49,24 @@ The SQLite database file (`cybertasks.db`) is created automatically next to the 
 | `show tasks` | Lists all tasks |
 | `complete task 1` | Marks task ID 1 as done |
 | `delete task 2` | Deletes task ID 2 |
-| Click **➕ Add Task** sidebar button | Prompts you to type the task name |
+| Click ** Add Task** sidebar button | Prompts you to type the task name |
 
-### Quiz (Task 2 — 15 marks)
+### Quiz 
 | Command | What it does |
 |---------|-------------|
 | `start quiz` | Begins the 12-question quiz |
-| Click **🎮 Start Quiz** | Same as above |
+| Click ** Start Quiz** | Same as above |
 | Type `A`, `B`, `C`, `D`, `True`, or `False` | Answers a question |
 
-### Activity Log (Task 4 — 10 marks)
+### Activity Log 
 | Command | What it does |
 |---------|-------------|
 | `show activity log` | Shows last 10 actions |
 | `what have you done` | Same as above |
 | `show full log` | Shows all recorded actions |
-| Click **📋 Activity Log** | Same as above |
+| Click ** Activity Log** | Same as above |
 
-### NLP (Task 3 — 10 marks)
+### NLP 
 The chatbot understands natural variations:
 - "Can you remind me to update my password?" → creates a task
 - "I need to set up two factor auth" → creates a task
@@ -135,17 +132,7 @@ CyberSecurityChatbotGUI/
 
 ---
 
-## GITHUB COMMITS GUIDE (for GitHub marks)
 
-Commit your code with meaningful messages. Suggested commit history:
-1. `Initial Part 3 setup: add TaskItem and DatabaseManager with SQLite`
-2. `Add QuizManager with 12 cybersecurity questions (mixed types)`
-3. `Add NLPProcessor for flexible intent detection`
-4. `Add ActivityLogger for session action tracking`
-5. `Enhance Chatbot.cs: integrate tasks, quiz, NLP, and activity log`
-6. `Update MainWindow: add sidebar with task/quiz/log buttons`
-
-Create a GitHub release tagged `v3.0` with release notes.
 
 ---
 
